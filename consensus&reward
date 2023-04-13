@@ -1,0 +1,15 @@
+1. powerRatio = GetPowerRatioFromBuiltinActor()
+2. rand := GetRandomness(epoch)
+3. h := sha256(VRF_Proof(SP_SK, rand))
+
+
+
+blockReward := big.Mul(st.ThisEpochReward, big.NewInt(params.WinCount)) // 算力占比越大，这个wincount就越大。
+		blockReward = big.Div(blockReward, big.NewInt(builtin.ExpectedLeadersPerEpoch))
+		totalReward = big.Add(blockReward, params.GasReward)
+    
+    
+    	// The reward to be paid in per WinCount to block producers.
+	// The actual reward total paid out depends on the number of winners in any round.
+	// This value is recomputed every non-null epoch and used in the next non-null epoch.
+	ThisEpochReward abi.TokenAmount
